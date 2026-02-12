@@ -34,6 +34,7 @@ jobs:
 
       - name: Run zjit_diff.rb
         run: |
+          set -o pipefail
           # Run the benchmark diff script comparing master to current HEAD
           # Capture output to a file for the PR comment
           tool/zjit_diff.rb --before master railsbench | tee benchmark_output.txt
