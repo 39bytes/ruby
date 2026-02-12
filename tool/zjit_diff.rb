@@ -22,7 +22,7 @@ class CommandRunner
   def cmd(*args, quiet: nil)
     quiet = @quiet if quiet.nil?
     options = { exception: true }
-    options = options.merge(out: File::NULL) if quiet
+    options = options.merge(out: quiet ? File::NULL : $stderr)
     system(*args, **options)
   end
 end
