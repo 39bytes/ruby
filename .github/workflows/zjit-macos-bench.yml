@@ -49,11 +49,12 @@ jobs:
             const benchmarkOutput = fs.readFileSync('benchmark_output.txt', 'utf8');
             const runLink = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
             const magicComment = `<!-- ZJIT-BENCHMARK-RESULTS -->`;
+            const shortHash = '${{ github.event.pull_request.head.sha }}'.substring(0, 7);
 
             const comment = `${magicComment}
             ## ZJIT Benchmark Results
 
-            Comparing \`master\` (before) vs \`${{ github.event.pull_request.head.sha }}\` (after)
+            Comparing \`master\` (before) with \`${shortHash}\` (after)
 
             <details>
             <summary>Benchmark Output</summary>
