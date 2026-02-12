@@ -237,3 +237,5 @@ options[:name_filters] += ARGV unless ARGV.empty?
 options[:after] ||= parse_ref('HEAD')
 
 ZJITDiff.new(options).run!
+
+# a
