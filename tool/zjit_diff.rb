@@ -19,10 +19,11 @@ class CommandRunner
     @quiet = quiet
   end
 
-  def cmd(*args, quiet: nil)
-    quiet = @quiet if quiet.nil?
-    options = { exception: true }
-    options = options.merge(out: File::NULL) if quiet
+  def cmd(*args, **options)
+    if options[:out].nil?
+      options[:out] = @quiet ? File::NULL : $stderr
+    end
+    options = options.merge(exception: true)
     system(*args, **options)
   end
 end
